@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String transactionId;
+    private Integer transactionId;
     private String accountNumber;
     private String type;
     private String amount;
