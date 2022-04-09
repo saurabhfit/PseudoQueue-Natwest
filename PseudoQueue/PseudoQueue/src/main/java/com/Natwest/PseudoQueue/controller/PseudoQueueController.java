@@ -2,7 +2,7 @@ package com.Natwest.PseudoQueue.controller;
 
 import com.Natwest.PseudoQueue.model.Transaction;
 import com.Natwest.PseudoQueue.payload.ResponsePayload;
-import com.Natwest.PseudoQueue.service.QueueService;
+import com.Natwest.PseudoQueue.service.PseudoQueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "api/1.0/queue")
-public class QueueController {
+@RequestMapping(value = "/api/1.0/pseudoQueue")
+public class PseudoQueueController {
 
     @Autowired
-    QueueService queueService;
+    PseudoQueueService pseudoQueueService;
 
     @RequestMapping(value = "/addTransaction", method = RequestMethod.POST,
         consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -23,7 +23,7 @@ public class QueueController {
         ResponsePayload payload = new ResponsePayload();
 
         if(validateTransaction(transaction)){
-            boolean success = queueService.enqueueTransaction(transaction);
+            boolean success = pseudoQueueService.enqueueTransaction(transaction);
             if(success){
                 payload.setResponseStatus(ResponsePayload.RESPONSE_STATUS.SUCCESS);
                 payload.setResponseMessage("Transaction added to queue successful");

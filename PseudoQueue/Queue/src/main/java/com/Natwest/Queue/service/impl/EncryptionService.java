@@ -1,26 +1,21 @@
-package com.Natwest.PseudoQueue.service.impl;
+package com.Natwest.Queue.service.impl;
 
-import ch.qos.logback.core.spi.PropertyContainer;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
 
 public class EncryptionService {
     private String ALGORITHM;
     private byte[] KEY;
 
+    @Autowired
+    public Environment env;
+
     public EncryptionService(){
-        PropertyContainer env;
         ALGORITHM = "AES/ECB/PKCS5Padding";
         KEY = "saurabhfit123456".getBytes();
     }
